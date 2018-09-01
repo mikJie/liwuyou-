@@ -1,0 +1,73 @@
+*{
+	padding: 0;
+	margin: 0;
+}
+li,ul{
+	list-style: none;
+}
+a{color: #3e3e3e;text-decoration: none;}
+body,html{height: 100%;width: 100%;}
+.box{height: 100%;width: 100%;display: flex;flex-flow: column;}
+header{width: 100%;height: 2.25rem;padding-top:10px ;}
+header>i{margin-right: 0.5rem;}
+header>span{margin-right: 3.5rem;}
+#banner{height: 13.5rem;width: 80%;padding: 0 10%;position: fixed;top: 2.35rem;left: 0;z-index: 2;background: #fff;border-top: 2px solid #ccc;display: none;}
+#banner>div.car_box{height: 3.9rem;border-bottom: 1px solid #ccc;padding-left:0.5rem ;line-height: 3.9rem;}
+#banner>ul{line-height: 2.1rem;}
+
+#banner>ul li{height: 2.1rem;border-bottom:1px solid #ccc ;padding-left: 0.5rem;}
+#banner>ul li.user_name{font-size: 13px;color: #d6a255;}
+#banner>ul li a{font-size: 15px;}
+#mask{width: 100%;position: fixed;top: 16rem;background: #3e3e3e;opacity: 0.5;height: 12.9rem;z-index: 2;display: none;}
+
+#content{width: 100%;flex: 1;overflow-y: auto;}
+#content .con{width: 100%;}
+.swiper-container{width: 100%;height: 9rem;}
+.swiper-wrapper{width: 100%;height: 100%;}
+.swiper-wrapper img{width: 100%;height: 100%;}
+#content .nav_one{padding: 0 0.5rem;line-height: 4.25rem;height: 4.25rem;}
+#content .nav_one span{margin-right: 1rem;font-size: 13px;}
+#content .nav_one span.span_last{margin: 0;}
+#content .nav_two{height: 11.0rem;background: #f9f9f9;padding: 17px 7px}
+#content .nav_two img{margin-right: 7px; margin-bottom: 10px;width: 7.4;height: 5.15rem;}
+#content .nav_two img.img_right{margin-right: 0;}
+#content .nav_two img.img_bottom{margin-bottom: 0;}
+#content .nav_three{width: 100%;background: #f4f4f4;text-align: center;padding-top:0.85rem;}
+#content .nav_three h2{font-size: 20px;}
+#content .nav_three h2 a{border-bottom: 1px solid #ccc;color: #3e3e3e;font-weight: 100;}
+#content .nav_three p{font-size: 13px;}
+#content .nav_three .pic{width: 100%;overflow: hidden;background:#f4f4f4;}
+#content .nav_three .pic div{float: left;width: 8rem;height: 9.5rem;margin-bottom: 0.5rem;}
+#content .nav_three .pic div.pic0,#content .nav_three .pic div.pic3{width: 100%;}
+#content .nav_three .pic img{width: 8rem;height: 9.5rem;margin-bottom: 5px;float: left;}
+#content .nav_three .pic img.pic0,#content .nav_three .pic img.pic3{width: 100%;}
+#content .nav_four{width: 100%;background: #f4f4f4;text-align: center;}
+#content .nav_four .one p{height: 2.4rem;line-height: 2.4rem;}
+#content .nav_four .one img{width: 100%;height: 8.9rem;display: block;}
+#content .nav_four .two{background: #f4f4f4;width: 100%;overflow: hidden;}
+#content .nav_four .two dl{float: left;width: 7.9rem;height: 8.5rem;margin-right: 4px;margin-bottom:5px;background: #fff;}
+#content .nav_four .two dl.dl1{margin-right: 0;}
+#content .nav_four .two dl.dl3{margin-right: 0;}
+#content .nav_four .two dl.dl5{margin-right: 0;}
+#content .nav_four .two dl dt img{width: 6rem;height: 6rem;}
+
+#content .nav_five{width: 100%;background: #f4f4f4;text-align: center;}
+#content .nav_five .one p{height: 2.4rem;line-height: 2.4rem;}
+#content .nav_five .one img{width: 100%;height: 8.9rem;display: block;}
+#content .nav_five .two{background: #f4f4f4;width: 100%;overflow: hidden;}
+#content .nav_five .two dl{float: left;width: 7.9rem;height: 8.5rem;margin-right: 4px;margin-bottom:5px;background: #fff;}
+#content .nav_five .two dl.dl1{margin-right: 0;}
+#content .nav_five .two dl.dl3{margin-right: 0;}
+#content .nav_five .two dl.dl5{margin-right: 0;}
+#content .nav_five .two dl dt img{width: 6rem;height: 6rem;}
+#content .nav_sex{width: 100%;background: #f4f4f4;}
+#content .nav_sex>p{height: 2.4rem;line-height: 2.4rem;text-align: center;}
+#content .nav_sex .one dl{display: flex;width: 80%;height: 2.9rem;background: #fff;padding: 1.2rem 10%;}
+#content .nav_sex dl dt{flex: 1;}
+#content .nav_sex dl>dt>img{width: 3rem;height: 3.rem;}
+#content .nav_sex dl dd{flex: 2;font-size: 14px;line-height: 1rem;}
+#content .nav_sex .one p{font-size: 12px;background: #fff;height: 2.4rem;line-height: 2.4rem;margin-bottom: 10px;text-align: center;}
+#content .nav_sex .one p span.spanHui{margin-right: 1rem;color: #999999;}
+
+footer img{width: 100%;}
+

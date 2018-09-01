@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+   
+   <title></title>
+    <link href="css/index.css" type="text/css" rel="stylesheet"/>
+    <link href="css/swiper.min.css" type="text/css" rel="stylesheet" />
+    <script src="js/iscroll.js"></script>
+    <script src="js/rem.js"></script>
+    <script src="js/swiper.min.js"></script>
+    <script src="js/zepto.js"></script>
+</head>
+<body>
+	<div class="box">
+		<header>
+		
+		</header>
+		<div id="banner">
+			<div>
+				
+			</div>
+			<div class="car_box">购物车为空</div>
+			<ul>
+				<li class="user_name"><a style="color: #b28850;" href="register.html">登录/注册</a></li>
+				<li><a href="##">浏览历史</a></li>
+				<li><a href="##">我的订单</a></li>
+				<li><a href="##">我的收藏</a></li>
+			</ul>
+		</div>
+		<div id="mask"></div>
+		<div id="content">
+			<div class="con">
+				<div class="swiper-container">
+					<div class="swiper-wrapper">
+						
+					</div>
+					<div class="swiper-pagination"></div>
+				</div>
+				<div class="nav_one">
+					<span>专属定制</span>
+					<span>激光镭雕</span>
+					<span>代写贺卡</span>
+					<span class="span_last">精心设计</span>
+				</div>
+				<div class="nav_two">
+					<img src="img/index_test01.png" />
+					<img src="img/index_test02.png"class="img_right" />
+					<img src="img/index_test03.png" class="img_bottom"/>
+					<img src="img/index_test04.png" class="img_right img_bottom" />
+				</div>
+				<div class="nav_three">
+					<h2><a href="">人气新品</a></h2>
+					<p>新鲜出炉 快来尝鲜</p>
+					<div class="pic" >
+						
+					</div>
+				</div>
+				<div class="nav_four">
+					<div class="one">
+						<p>生日礼物</p>
+						<img src="img/m_srlw_banner(9652).jpg" />
+					</div>
+					<div class="two">
+						
+					</div>
+				</div>
+				<div class="nav_five">
+					<div class="one">
+						<p>创意礼物</p>
+						<img src="img/m_cylw_banner.jpg" />
+					</div>
+					<div class="two">
+						
+					</div>
+				</div>
+				<div class="nav_sex">
+					<p>热评商品</p>
+					<div class="one">
+						
+					</div>
+				</div>
+			</div>
+			<footer>
+				<div>
+					<img src="img/5.jpg" />
+				</div>
+			</footer>
+		</div>
+	</div>
+	<script type="text/javascript" src="js/common.js" ></script>
+	<script>
+	
+		$.ajax({
+			type:"get",
+			url:"banner.json",
+			//dataType:"jsonp",
+			success:function(data){
+				//轮播图加载
+				console.log(data)
+				
+				show_list(data)
+				//
+				show_one(data)
+				//
+				show_two(data)
+				//
+				show_three(data)
+				//评论
+				show_four(data)
+			}
+			
+		});
+		function show_list(data){
+			var str = "";
+			var arr = data.list;
+			for(i in arr){
+				str += "<div class='swiper-slide'><a href='goods.html?"+arr[i].idOnly+"'><img src='"+arr[i].src+"'/></a></div>"
+			}
+			$(".swiper-wrapper").html(str)
+			//轮播图滚动
+			console.log(arr)                                                                                                                                                         
+			swiper()
+		}
+		function swiper(){
+			var swiper = new Swiper(".swiper-container",{
+				direction:"horizontal",//水平滚动
+				loop:true,//循环播放
+				pagination: '.swiper-pagination',//分页器
+				autoplay : 1000,//轮播时间设定
+			    autoplayDisableOnInteraction : false//用户操作完之后不会被禁掉轮播
+			})
+		}
+		function show_one(data){
+			var arr1 = data.one;
+			var str1 = "";
+			for(i in arr1){
+				str1 += "<div class='pic"+arr1[i].id+"'><a href='goods.html?"+arr1[i].idOnly+"'><img src='"+arr1[i].src+"' class = 'pic"+arr1[i].id+"'/></a></div>"
+			}
+			$(".nav_three .pic").html(str1)
+		}
+		function show_two(data){
+			var arr2 = data.two;
+			var str2 = "";
+			for(i in arr2){
+				str2 += "<dl class='dl"+arr2[i].id+"'><dt><a href='goods.html?"+arr2[i].idOnly+"'><img src='"+arr2[i].src+"'/></a></dt>"
+				str2 += "<dd><p>"+arr2[i].content+"</p><p>¥"+arr2[i].pic+"</P></dd></dl>"
+			}
+			$(".nav_four .two").html(str2)
+		}
+		function show_three(data){
+			var arr3 = data.three;
+			var str3 = "";
+			for(i in arr3){
+				str3 += "<dl class='dl"+arr3[i].id+"'><dt><a href='goods.html?"+arr3[i].idOnly+"'><img src='"+arr3[i].src+"'/></a></dt>"
+				str3 += "<dd><p>"+arr3[i].content+"</p><p>¥"+arr3[i].pic+"</P></dd></dl>"
+			}
+			$(".nav_five>.two").html(str3)
+		}
+		function show_four(data){
+			var arr4 = data.four;
+			var str4 = "";
+			for(i in arr4){
+				str4 += "<dl><dt><img src = '"+arr4[i].src+"'/></dt>"
+				str4 += "<dd>"+arr4[i].content+"</dd></dl>"
+				str4 += "<p><span class='spanHui'>"+arr4[i].name+"</span><span>"+arr4[i].pic+"</span></p>"
+			}
+			$(".nav_sex .one").html(str4)
+		}
+		/*function show(opt){
+			var config = {
+				data : "",
+				box :""
+			}
+			$.extend(config,opt)
+			var arr = config.data;
+			var str = "";
+			for(i in arr){
+				str += "<dl><dt><img src = '"+arr[i].src+"'/></dt>"
+				str += "<dd>"+arr[i].content+"</dd></dl>"
+				str += "<p><span class='spanHui'>"+arr[i].name+"</span><span>"+arr[i].pic+"</span></p>"
+			}
+			config.box.html(str)
+		}*/
+	</script>
+</body>
+</html>

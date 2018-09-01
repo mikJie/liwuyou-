@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+	    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+	    <link href="css/goods.css" type="text/css" rel="stylesheet"/>
+	    <link href="css/swiper.min.css" type="text/css" rel="stylesheet" />
+	   <title></title>
+	    <script src="js/iscroll.js"></script>
+	    <script src="js/rem.js"></script>
+	    <script src="js/swiper.min.js"></script>
+	    <script src="js/zepto.js"></script>
+	</head>
+	<body>
+		<div id="box">
+			<header></header>
+			<div id="banner">
+				<div>
+					
+				</div>
+				<p>购物车为空</p>
+				<ul>
+					<li class="user_name"><a style="color: #b28850;" href="register.html">登录/注册</a></li>
+					<li><a href="##">浏览历史</a></li>
+					<li><a href="##">我的订单</a></li>
+					<li><a href="##">我的收藏</a></li>
+				</ul>
+				
+			</div>
+			<div id="mask"></div>
+			<div id="nav">
+				<div class="w">
+					<p class="l"><a href="index.html">首页</a></p>
+					<p class="r"><a href="##">有问题</a></p>
+				</div>
+			</div>
+			<div id="content">
+				<div class="banner">
+					<div>
+						<div class="swiper-container">
+							<div class="swiper-wrapper">
+							</div>
+							<div class="swiper-pagination"></div>
+						</div>
+					</div>
+					<div class="con">
+						<div class="miaoshu">
+							
+						</div>
+						<input type="button" value="加入购物车" class="car_btn"/>
+						<div class="goods">
+						
+						</div>
+					</div>
+					
+				</div>
+				<footer>
+					<div>
+						<img src="img/5.jpg" />
+					</div>
+				</footer>
+			</div>	
+		</div>
+		<script type="text/javascript" src="js/common.js" ></script>
+		<script>
+			var opt ={
+				url:window.location.href,
+				str:"",
+				str2:"",
+				id:"",
+				arr:""
+			}
+			$.ajax({
+				url:"banner.json",
+				data:{},
+				success:function(data){
+					show(data)
+					showG(data)
+				}
+			});
+			function show(data){
+				opt.str = opt.url.split("?")[1]
+				opt.str2 = opt.str.split("_")[0]//"list"/"one"
+				opt.id = opt.str.split("_")[1]//id
+				opt.arr = data[opt.str2]
+				var arr2 = opt.arr[opt.id].imgs
+				var strs = "";
+				for(var i=0;i<arr2.length;i++){
+					strs += "<div class='swiper-slide'><img src='"+arr2[i]+"'/></div>"
+				}
+				var str3 = "<p>"+opt.arr[opt.id].content+"</p><p>单价：&"+opt.arr[opt.id].pic+"</p><p>数量：<span class='btn_minus'>-</span><input type='text' value='"+opt.arr[opt.id].number+"' class='num'/><span class='btn_add'>+</span></p>"
+				$("#content .swiper-wrapper").html(strs)//轮播图
+				$(".miaoshu").html(str3)
+				var swiper = new Swiper(".swiper-container",{
+					direction:"horizontal",//水平滚动
+					loop:true,//循环播放
+					pagination: '.swiper-pagination',//分页器
+					autoplay : 3000,//轮播时间设定
+				    autoplayDisableOnInteraction : false//用户操作完之后不会被禁掉轮播
+				})
+			}
+			function showG(data){
+				var arr3 = opt.arr[opt.id].imgL
+				var str3 =""
+				for(i in arr3){
+					str3 += "<div><img src='"+arr3[i]+"'/></div>"
+				}
+				$(".goods").html(str3)
+			}
+			
+			$(".miaoshu").on("click",".btn_add",function(){
+				suan(true)
+			})
+			$(".miaoshu").on("click",".btn_minus",function(){
+				suan(false)
+			})
+			//数量加减
+			function suan(flag){
+				var n = $(".num").val()
+				if(flag){
+					n++
+				}else{
+					n--
+				}
+				if(n<1){
+					n=1
+				}
+				$(".num").val(n) 
+				console.log($(".num").val())
+			}
+			$(".car_btn").bind("click",function(){
+				//opt.str
+				var name = localStorage.getItem("L_regiser_user")
+				var obj = localStorage.getItem("L_"+name)
+				var O = JSON.parse(obj)
+				var paw = O.paw
+				var num = $(".num").val() 
+				if(O.list!=null){
+					//console.log(O.list)
+					var flag = true
+					for(i in O.list){
+						if(O.list[i].goodsID==opt.str){
+							flag = false
+						}
+					}
+					if(flag){
+						alert()
+						var list = {
+							goodsID:opt.str,
+							num:num
+						};
+						//O.list.push(list)
+						//var strlist = O.list.toString()
+						var strA = "["
+						$.each(O.list,function(i,r){
+							strA += '{"goodsID":"'+r.goodsID+'","num":"'+r.num+'"},'
+						})
+						strA += '{"goodsID":"'+opt.str+'","num":"'+num+'"}'
+						strA +="]"
+						console.log(eval(strA))
+						console.log('{"name":"'+name+'","paw":"'+O.paw+'","list":"'+strA+'"}')
+						localStorage.setItem('L_'+name,'{"name":"'+name+'","paw":"'+O.paw+'","list":'+strA+'}')
+					}
+				}else{
+					var list = '[{"goodsID":"'+opt.str+'","num":"'+num+'"}]'
+					localStorage.setItem('L_'+name,'{"name":"'+name+'","paw":"'+O.paw+'","list":'+list+'}')
+					
+				}
+			})
+		</script>
+	</body>
+</html>

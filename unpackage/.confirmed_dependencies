@@ -1,0 +1,39 @@
+{
+  "index.html": {
+    "resources": [
+      "banner.json",
+      "header.html",
+      "js/swiper.min.js",
+      "img/index_test02.png",
+      "js/zepto.js",
+      "js/rem.js",
+      "img/5.jpg",
+      "css/index.css",
+      "img/2.jpg",
+      "img/m_cylw_banner.jpg",
+      "js/common.js",
+      "img/m_srlw_banner(9652).jpg",
+      "img/1.jpg",
+      "css/swiper.min.css",
+      "js/iscroll.js",
+      "img/index_test01.png",
+      "img/index_test04.png",
+      "img/3.jpg",
+      "img/index_test03.png",
+      "register.html"
+    ],
+    "refer": [
+      "register.html"
+    ]
+  },
+  "register.html": {
+    "resources": [
+      "header.html",
+      "css/register.css",
+      "index.html"
+    ],
+    "refer": [
+      "index.html"
+    ]
+  }
+}

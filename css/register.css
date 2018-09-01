@@ -1,0 +1,32 @@
+*{
+	padding: 0;
+	margin: 0;
+}
+li,ul{
+	list-style: none;
+}
+.l{float: left;}
+.r{float: right;}
+.w{width: 13.85rem;margin: 0 auto;}
+a{color: #3e3e3e;text-decoration: none;}
+body,html{height: 100%;width: 100%;font-size: 13px;}
+.box{height: 100%;width: 100%;display: flex;flex-flow: column;}
+header{width: 100%;height: 2.1rem;padding-top:10px ;}
+header>i{margin-right: 0.5rem;}
+header>span{margin-right: 3.5rem;}
+#nav{height: 1.5rem;background: #f4f4f4;line-height: 1.8rem;}
+#content{padding: 1.3rem 0}
+#content input{width: 97%;height: 1.8rem;font-size: 14px;}
+#content>form>p{height: 1.5rem;line-height: 1.5rem;color: red;}
+
+
+
+
+
+
+
+
+
+
+
+

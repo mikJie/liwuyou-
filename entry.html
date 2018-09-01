@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+	    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+	    <link href="css/register.css" type="text/css" rel="stylesheet"/>
+	    <link href="css/swiper.min.css" type="text/css" rel="stylesheet" />
+	   <title></title>
+	    <script src="js/iscroll.js"></script>
+	    <script src="js/rem.js"></script>
+	    <script src="js/swiper.min.js"></script>
+	    <script src="js/zepto.js"></script>
+	</head>
+	<body>
+		<div id="box">
+			<header></header>
+			<div id="nav">
+				<div class="w">
+					<p class="l"><a href="index.html">首页</a></p>
+					<p class="r"><a href="##">有问题</a></p>
+				</div>
+			</div>
+			<div class="w" id="content">
+				<form>
+					<input type="text" placeholder="请输入手机号" /><br />
+					<p class="yanZ_one"></p>
+					<input type="password" placeholder="请输入密码" style=""/><br />
+					<p class="yanZ_two"></p>
+					<input type="checkbox" style="width: 0.7rem;height: 0.7rem;font-size: 13px;margin-bottom: 0.5rem;" /><a href="##">30天内免登陆</a><br />
+					<input type="button" value="登陆" style="background: #d93732;color: #fff;border: 0;margin-bottom: 0.5rem;"/><br />
+				</form>
+			</div>
+			<footer>
+				<div>
+					<img src="img/5.jpg" />
+				</div>
+			</footer>
+		</div>
+		<script type="text/javascript" src="js/common.js" ></script>
+		<script>
+			$("input").eq(3).on("click",function(){
+				var txtV = $("input").eq(0).val();
+				var pawV = $("input").eq(1).val();
+				if(localStorage.getItem("L_"+txtV)!=null){
+					var str = localStorage.getItem("L_"+txtV)
+					var obj = JSON.parse(str)
+					//console.log(obj)
+					if(obj.paw==pawV){
+						localStorage.setItem("L_regiser_user",obj.name)
+						window.location.href = "index.html"
+					}else{
+						alert("密码不正确")
+					}
+					//console.log(obj)
+				}else{
+					alert("用户名不存在")
+				}
+				
+			})
+		</script>
+	</body>
+</html>

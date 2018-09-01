@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+	    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+	    <link href="css/register.css" type="text/css" rel="stylesheet"/>
+	    <link href="css/swiper.min.css" type="text/css" rel="stylesheet" />
+	   <title></title>	
+	</head>
+    <script src="js/iscroll.js"></script>
+    <script src="js/rem.js"></script>
+    <script src="js/swiper.min.js"></script>
+    <script src="js/zepto.js"></script>
+	<body>
+		<div id="box">
+			<header></header>
+			<div id="nav">
+				<div class="w">
+					<p class="l"><a href="index.html">首页</a></p>
+					<p class="r"><a href="##">有问题</a></p>
+				</div>
+			</div>
+			<div class="w" id="content">
+				<form>
+					<input type="text" placeholder="请输入手机号" /><br />
+					<p class="yanZ_one"></p>
+					<input type="password" placeholder="请输入密码" style=""/><br />
+					<p class="yanZ_two"></p>
+					<input type="checkbox" style="width: 0.7rem;height: 0.7rem;font-size: 13px;margin-bottom: 0.5rem;" /><a href="##">注册即视为同意 《礼无忧用户注册协议》</a><br />
+					<input type="button" value="注册" style="background: #d93732;color: #fff;border: 0;margin-bottom: 0.5rem;"/><br />
+					<input type="button" value="老用户登陆" style="margin-bottom: 0.2rem;background: #fff;border: 1px solid #ccc;"/><br />
+				</form>
+			</div>
+			<footer>
+				<div>
+					<img src="img/5.jpg" />
+				</div>
+			</footer>
+		</div>
+		<script type="text/javascript" src="js/common.js" ></script>
+		<script>
+			//手机号验证
+			//var reg = /^1(3|4|5|7|8)\d{9}$/;
+			var opt ={
+				phone:"",
+				paw:"",
+				flag:true,
+				reg:/^1(3|4|5|7|8)\d{9}$/,//手机号正则
+				regPAW:/^[\@A-Za-z0-9\!\#\$\%\^\&\*\.\~]{6,22}$///密码正则
+			}
+			$("input").eq(0).on("blur",function(){
+				opt.phone = $("input").eq(0).val();
+				//console.log(reg.test(txtV))
+				if(opt.phone!=""){
+					if(opt.reg.test(opt.phone)){
+						$(".yanZ_one").html(" ");
+						opt.flag = true;
+					}else{
+						$(".yanZ_one").html("你的手机号不合法");
+						opt.flag=false
+					}	
+				}else{
+					$(".yanZ_one").html("手机号不能为空");
+					opt.flag=false
+				}
+				
+			})
+			//密码验证
+			//var regPAW = /^[\@A-Za-z0-9\!\#\$\%\^\&\*\.\~]{6,22}$/;
+			
+			$("input").eq(1).on("blur",function(){
+				opt.paw = $("input").eq(1).val();
+				if(opt.paw!=""){
+					if(opt.regPAW.test(opt.paw)){
+						$(".yanZ_two").html("");
+						opt.flag = true;
+					}else{
+						$(".yanZ_two").html("密码必须6-22位数字或字母或符号");
+						opt.flag = false;
+					}
+				}else{
+					$(".yanZ_two").html("密码不能为空");
+					opt.flag = false;
+				}
+					
+			})
+			//注册
+			$("input").eq(3).on("click",function(){
+				//console.log($("input").eq(2).attr("checked"))
+				if(opt.phone!=""||pawV!=""){
+					if($("input").eq(2).attr("checked")&&opt.flag){
+						var name = localStorage.getItem("L_"+opt.phone)
+						if(name!=null){
+							alert("手机号已被注册")
+							$("input").eq(1).val("")
+							
+						}else{
+							alert("注册成功")
+							localStorage.setItem("L_"+opt.phone,'{"name":"'+opt.phone+'","paw":"'+opt.paw+'"}')
+							localStorage.setItem("L_regiser_user",opt.phone)
+							window.location.href = "index.html"
+						}
+						
+					}else{
+						alert("注册失败")
+					}	
+				}else{
+					alert("用户名和密码不能为空")
+				}
+			})
+			//登录
+			$("input").eq(4).on("click",function(){
+				window.location.href = "entry.html"
+			})
+		</script>
+	</body>
+</html>
